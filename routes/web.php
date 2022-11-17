@@ -30,16 +30,9 @@ use App\Models\Persona;
 */
 
 Route::get('/', function () {
-    // $personas = Persona::all();
-    // dd($personas);
-    dd("Hola");
-    // return view('welcome');
+    return view('plantilla');
 });
 
-// Route::get('persona/edit', function () {
-//     $personas = Persona::all();
-//     dd($personas);
-// });
 
 // Resources permite trabajar con los metodos de los datos
 // Route::resource('persona', PersonaController::class);
@@ -65,7 +58,6 @@ Route::get('caja/{id}/destroy', [CajaController::class, 'destroy'])->name('caja.
 
 
 // categoria
-Route::get('categoria/exportarpdf', [CategoriaController::class, 'exportar_pdf'])->name('categoria.exportar_pdf');
 Route::get('categoria/index', [CategoriaController::class, 'index'])->name('categoria.index');
 Route::get('categoria/create', [CategoriaController::class, 'create'])->name('categoria.create');
 Route::post('categoria/store', [CategoriaController::class, 'store'])->name('categoria.store');

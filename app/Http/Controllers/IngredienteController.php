@@ -9,7 +9,7 @@ class IngredienteController extends Controller
 {
     public function index(){
         $ingrediente = Ingrediente::all();
-        dd($ingrediente);
+        return view("ingredientes.index", compact("ingrediente"));
     }
 
     public function create(){

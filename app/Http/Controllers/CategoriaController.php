@@ -9,7 +9,7 @@ class CategoriaController extends Controller
 {
     public function index(){
         $categoria = Categoria::all();
-        dd($categoria);
+        return view("categorias.index", compact("categoria"));
     }
 
     public function create(){

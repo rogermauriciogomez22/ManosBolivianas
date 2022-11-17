@@ -9,7 +9,7 @@ class PersonaController extends Controller
 {
     public function index(){
         $personas = Persona::all();
-        dd($personas);
+        return view("personas.index", compact("personas"));
     }
 
     public function create(){

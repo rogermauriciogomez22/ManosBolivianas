@@ -9,7 +9,7 @@ class MesaController extends Controller
 {
     public function index(){
         $mesa = Mesa::all();
-        dd($mesa);
+        return view("mesas.index", compact("mesa"));
     }
 
     public function create(){

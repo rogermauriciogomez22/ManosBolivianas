@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Persona;
 
 class ClienteController extends Controller
 {
     public function index(){
-        $cliente = Cliente::all();
-        dd($cliente);
+        $cliente = Persona::join('cliente', 'cliente.persona_id','=','persona.id')->select('persona.nombre','persona.apellido','persona.ci')->get();
+        return view("clientes.index", compact("cliente"));
     }
 
     public function create(){
