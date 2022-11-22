@@ -13,7 +13,19 @@ class PersonaController extends Controller
     }
 
     public function create(){
-        dd("Crear");
+        return view("personas/create");
+    }
+
+    public function store(Request $request){
+        $persona = new Persona();
+        $persona->nombre = $request->nombre;
+        $persona->apellido = $request->apellido;
+        $persona->ci = $request->ci;
+        $persona->complemento = $request->complemento;
+        $persona->celular = $request->celular;
+        $persona->telefono = $request->telefono;
+        $persona->save();
+        return redirect()->route("persona.index");
     }
 
     public function edit($id){
