@@ -13,11 +13,36 @@ class IngredienteController extends Controller
     }
 
     public function create(){
-        dd("Crear");
+        return view("ingredientes/create");
+    }
+
+    public function store(Request $request){
+        $ingrediente = new Ingrediente();
+        $ingrediente->nombre = $request->nombre;
+        $ingrediente->fecha_ingreso = $request->fecha_ingreso;
+        $ingrediente->lote = $request->lote;
+        $ingrediente->marca = $request->marca;
+        $ingrediente->fecha_vencimiento = $request->fecha_vencimiento;
+        $ingrediente->medida = $request->medida;
+        $ingrediente->save();
+        return redirect()->route("ingrediente.index");
     }
 
     public function edit($id){
-        dd("El id recibido es = ".$id);
+        $ingrediente = Ingrediente::find($id);
+        return view('ingredientes/edit')->with('ingredientes',$ingrediente);
+    }
+
+    public function update(Request $request, $id){
+        $ingrediente = Ingrediente::find($id);
+        $ingrediente->nombre = $request->nombre;
+        $ingrediente->fecha_ingreso = $request->fecha_ingreso;
+        $ingrediente->lote = $request->lote;
+        $ingrediente->marca = $request->marca;
+        $ingrediente->fecha_vencimiento = $request->fecha_vencimiento;
+        $ingrediente->medida = $request->medida;
+        $ingrediente->save();
+        return redirect()->route("ingrediente.index");
     }
 
     public function show($id){

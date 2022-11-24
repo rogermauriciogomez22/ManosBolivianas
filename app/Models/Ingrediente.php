@@ -9,5 +9,5 @@ class Ingrediente extends Model
 {
     use HasFactory;
     protected $table = "ingrediente";
-    protected $fillable = ['id','fecha_ingreso','lote','marca','fecha_vencimiento','medida','estado','created_at','update_at'];
+    protected $fillable = ['id','fecha_ingreso','lote','marca','fecha_vencimiento','medida','estado','created_at','updated_at'];
 }

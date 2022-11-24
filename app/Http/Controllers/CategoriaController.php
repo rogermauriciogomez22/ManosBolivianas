@@ -13,11 +13,28 @@ class CategoriaController extends Controller
     }
 
     public function create(){
-        dd("Crear");
+        return view("categorias/create");
+    }
+
+    public function store(Request $request){
+        $categoria = new Categoria();
+        $categoria->nombre = $request->nombre;
+        $categoria->descripcion = $request->descripcion;
+        $categoria->save();
+        return redirect()->route("categoria.index");
     }
 
     public function edit($id){
-        dd("El id recibido es = ".$id);
+        $categoria = Categoria::find($id);
+        return view('categorias/edit')->with('productos',$categoria);
+    }
+
+    public function update(Request $request, $id){
+        $categoria = Categoria::find($id);
+        $categoria->nombre = $request->nombre;
+        $categoria->descripcion = $request->descripcion;
+        $categoria->save();
+        return redirect()->route("categoria.index");
     }
 
     public function show($id){

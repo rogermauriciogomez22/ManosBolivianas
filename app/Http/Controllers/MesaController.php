@@ -13,11 +13,28 @@ class MesaController extends Controller
     }
 
     public function create(){
-        dd("Crear");
+        return view("mesas/create");
+    }
+
+    public function store(Request $request){
+        $mesa = new Mesa();
+        $mesa->posicion = $request->posicion;
+        $mesa->capacidad = $request->capacidad;
+        $mesa->save();
+        return redirect()->route("mesa.index");
     }
 
     public function edit($id){
-        dd("El id recibido es = ".$id);
+        $mesa = Mesa::find($id);
+        return view("mesas/edit")->with('mesas',$mesa);
+    }
+
+    public function update(Request $request, $id){
+        $mesa = Mesa::find($id);
+        $mesa->posicion = $request->posicion;
+        $mesa->capacidad = $request->capacidad;
+        $mesa->save();
+        return redirect()->route("mesa.index");
     }
 
     public function show($id){

@@ -25,11 +25,24 @@ class PersonaController extends Controller
         $persona->celular = $request->celular;
         $persona->telefono = $request->telefono;
         $persona->save();
-        return redirect()->route("persona.index");
+        return redirect()->route("persona.index");//esto redireciona a una ruta
     }
 
     public function edit($id){
-        dd("El id recibido es = ".$id);
+        $persona = Persona::find($id);
+        return view('personas/edit')->with('persona',$persona);//esto retorna a una vista
+    }
+
+    public function update(Request $request, $id){
+        $persona = Persona::find($id);
+        $persona->nombre = $request->nombre;
+        $persona->apellido = $request->apellido;
+        $persona->ci = $request->ci;
+        $persona->complemento = $request->complemento;
+        $persona->celular = $request->celular;
+        $persona->telefono = $request->telefono;
+        $persona->save();
+        return redirect()->route("persona.index");
     }
 
     public function show($id){
@@ -37,7 +50,15 @@ class PersonaController extends Controller
     }
 
     public function destroy($id){
-        dd("El id para eliminar es = ".$id);
+        $persona = Persona::find($id);
+        if($persona->estado == 0){
+            $persona->estado = 1;
+        }
+        elseif($persona->estado == 1){
+            $persona->estado = 0;
+        }
+        $persona->save();
+        return redirect()->route('persona.index');
     }
 
     public function exportar_pdf(){

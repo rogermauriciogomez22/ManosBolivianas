@@ -9,5 +9,5 @@ class Mesa extends Model
 {
     use HasFactory;
     protected $table = "mesa";
-    protected $fillable = ['id','posicion','capacidad','estado','created_at','update_at'];
+    protected $fillable = ['id','posicion','capacidad','estado','created_at','updated_at'];
 }
